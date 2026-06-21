@@ -68,6 +68,25 @@
 
 ---
 
+## Day 5-8: Package Management & System Commands
+
+| Command | What It Does | Example |
+|---------|--------------|---------|
+| `sudo apt update` | Update package list | `sudo apt update` |
+| `sudo apt upgrade` | Upgrade installed packages | `sudo apt upgrade` |
+| `sudo apt install <package>` | Install a new package | `sudo apt install net-tools` |
+| `sudo apt remove <package>` | Remove a package | `sudo apt remove net-tools` |
+| `sudo apt autoremove` | Remove unused packages | `sudo apt autoremove` |
+| `uname -a` | Show system information | `uname -a` |
+| `whoami` | Show current username | `whoami` |
+| `groups` | Show user groups | `groups` |
+| `sudo -l` | List available sudo commands | `sudo -l` |
+| `ifconfig` | Show network interfaces | `ifconfig` |
+| `ping` | Test network connectivity | `ping google.com` |
+| `clear` | Clear the terminal screen | `clear` |
+
+---
+
 ## My Personal Notes
 
 ### Commands I Want to Remember
