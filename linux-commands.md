@@ -68,7 +68,7 @@
 
 ---
 
-## Day 5-8: Package Management & System Commands
+## Day 5-6: Package Management & System Commands
 
 | Command | What It Does | Example |
 |---------|--------------|---------|
@@ -77,6 +77,10 @@
 | `sudo apt install <package>` | Install a new package | `sudo apt install net-tools` |
 | `sudo apt remove <package>` | Remove a package | `sudo apt remove net-tools` |
 | `sudo apt autoremove` | Remove unused packages | `sudo apt autoremove` |
+| `sudo apt search <package>` | Search for a package | `sudo apt search wireshark` |
+| `apt show <package>` | Show package info | `apt show wireshark` |
+| `dpkg -i <file.deb>` | Install a .deb file | `sudo dpkg -i file.deb` |
+| `dpkg -l` | List installed packages | `dpkg -l` |
 | `uname -a` | Show system information | `uname -a` |
 | `whoami` | Show current username | `whoami` |
 | `groups` | Show user groups | `groups` |
@@ -84,6 +88,28 @@
 | `ifconfig` | Show network interfaces | `ifconfig` |
 | `ping` | Test network connectivity | `ping google.com` |
 | `clear` | Clear the terminal screen | `clear` |
+
+---
+
+## Day 7: Process Management
+
+| Command | What It Does | Example |
+|---------|--------------|---------|
+| `ps` | Show running processes | `ps aux` |
+| `ps aux` | Show all processes in detail | `ps aux` |
+| `ps aux \| grep <name>` | Find a specific process | `ps aux \| grep firefox` |
+| `top` | Show live system processes | `top` (Press `q` to quit) |
+| `htop` | Interactive process viewer | `htop` |
+| `kill <PID>` | Kill a process by ID | `kill 1234` |
+| `kill -9 <PID>` | Force kill a process | `kill -9 1234` |
+| `jobs` | Show background jobs | `jobs` |
+| `bg` | Resume a job in background | `bg %1` |
+| `fg` | Bring a job to foreground | `fg %1` |
+
+### My Practice Notes
+- `ps aux` shows all processes from all users
+- `top` is great for monitoring system performance
+- `kill -9` is a last resort for stuck processes
 
 ---
 
