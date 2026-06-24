@@ -33,6 +33,8 @@
 | `head` | Show first few lines | `head data.txt` |
 | `tail` | Show last few lines | `tail data.txt` |
 | `less` | Read long files page by page | `less data.txt` |
+| `wc` | Count lines, words, characters | `wc -l data.txt` |
+| `2>/dev/null` | Hide error messages | `find / -name file 2>/dev/null` |
 
 ---
 
@@ -91,7 +93,7 @@
 
 ---
 
-## Day 7: Process Management
+## Day 7: Process Management (NetworkChuck EP7)
 
 | Command | What It Does | Example |
 |---------|--------------|---------|
@@ -110,34 +112,36 @@
 - `ps aux` shows all processes from all users
 - `top` is great for monitoring system performance
 - `kill -9` is a last resort for stuck processes
+- `jobs` shows background tasks in the current shell
 
 ---
 
-## My Personal Notes
+## Day 8: Linux Terminal Shortcuts (NetworkChuck EP9)
 
-### Commands I Want to Remember
-- `cat ./-file07` - Read a file that starts with `-`
-- `grep millionth data.txt` - Search for "millionth" in a large file
-- `find / -user bandit7 -size 33c` - Find a file by size and owner
-- `2>/dev/null` - Hide error messages when searching
-- `echo "text" \| openssl s_client ...` - Send text via SSL
+### Shortcuts
+| Shortcut | What It Does |
+|----------|--------------|
+| `Tab` | Auto-completes commands and file names |
+| `↑ (Up Arrow)` | Shows previous command |
+| `↓ (Down Arrow)` | Shows next command |
+| `Ctrl + A` | Moves cursor to start of line |
+| `Ctrl + E` | Moves cursor to end of line |
+| `Ctrl + U` | Clears everything before cursor |
+| `Ctrl + K` | Clears everything after cursor |
+| `Ctrl + R` | Search command history |
+| `Ctrl + C` | Stop/kill current command |
+| `Ctrl + D` | Exit terminal |
+| `Ctrl + Z` | Suspend current process |
+| `history` | Show all previous commands |
 
-### File Type Flowchart
-1. Always start with: `file filename`
-2. Based on output:
-   - `ASCII text` → `cat filename`
-   - `gzip compressed` → `gunzip filename`
-   - `bzip2 compressed` → `bunzip2 filename`
-   - `tar archive` → `tar -xf filename`
-   - `data` → `strings filename`
+### Aliases I Created
+| Command | What It Does |
+|---------|--------------|
+| `alias ll='ls -la'` | Shortcut for `ls -la` |
+| `alias gs='git status'` | Shortcut for `git status` |
+| `alias c='clear'` | Shortcut for `clear` |
+| `alias ..='cd ..'` | Shortcut to go up one directory |
 
-### SSH Key Tips
-- Always use `chmod 600` for SSH keys
-- Save keys in `/tmp` if permission denied in home directory
-- Use `ssh -i keyfile user@host -p port` to connect
-
-### Ports I Used
-- Port 2220 - SSH for Bandit
-- Port 30000 - Netcat service (Level 14)
-- Port 30001 - SSL service (Level 15)
-- Port 31790 - SSL service for SSH key (Level 16)
+### How to Make Aliases Permanent
+```bash
+nano ~/.bashrc
