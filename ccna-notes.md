@@ -57,11 +57,181 @@
   - Presentation (6)
   - Application (7)
 
+## Lab 1: Cisco CLI Modes
+
+### Modes Practiced
+| Mode | Prompt | Command to Enter |
+|------|--------|------------------|
+| User EXEC | `Router>` | (default on login) |
+| Privileged EXEC | `Router#` | `enable` |
+| Global Config | `Router(config)#` | `configure terminal` |
+| Interface Config | `Router(config-if)#` | `interface fastEthernet 0/0` |
+| Line Config | `Router(config-line)#` | `line vty 0 4` |
+| Router Config | `Router(config-router)#` | `router rip` |
+
+### Key Takeaways
+- `end` takes you from any mode back to Privileged EXEC
+- `exit` goes back one level
+- `disable` takes you from Privileged to User EXEC
+
 ---
+
+## Lab 2: Basic Configuration of Router and Switch 
 
 ## Packet Tracer Project 2: Two Networks with a Router
 
 ### Topology
 - PC0 (192.168.1.1) → Switch0 → Router0 → PC1 (192.168.2.1)
+
+### Switch Configuration (DU)
+| Setting | Value |
+|---------|-------|
+| Hostname | DU |
+| Enable Secret | cisco123 |
+| Console Password | ashish123 |
+| Telnet Password | ashish@123# |
+| Management IP | 192.168.10.10/24 |
+| Default Gateway | 192.168.10.1 |
+
+### Switch Commands Used
+en
+conf t
+hostname DU
+enable secret cisco123
+banner motd "Unauthorized Users are highly Prohibited to login here"
+line console 0
+password ashish123
+login
+exit
+line vty 0 4
+password ashish@123#
+login
+exit
+interface vlan 1
+ip address 192.168.10.10 255.255.255.0
+no shutdown
+exit
+ip default-gateway 192.168.10.1
+write memory
+### Router Configuration (BUET)
+| Setting | Value |
+|---------|-------|
+| Hostname | BUET |
+| Enable Secret | cisco123 |
+| Console Password | ashish123 |
+| Telnet Password | ashish@123# |
+| Interface IP | 192.168.10.1/24 |
+
+### Router Commands Used
+en
+conf t
+hostname BUET
+enable secret cisco123
+banner motd"Do not try to access here"
+line console 0
+password ashish123
+login
+exit
+line vty 0 4
+password ashish@123#
+login
+exit
+interface gig0/0
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+exit
+write memory
+### PC Configuration
+| Device | IP Address | Subnet Mask | Gateway |
+|--------|------------|-------------|---------|
+| PC0 | 192.168.10.2 | 255.255.255.0 | 192.168.10.1 |
+| PC1 | 192.168.10.3 | 255.255.255.0 | 192.168.10.1 |
+
+### Test Results
+| Test | Result |
+|------|--------|
+| Ping PC0 → PC1 | ✅ Successful |
+| Ping PC0 → Router | ✅ Successful |
+| Telnet to Switch | ✅ Successful |
+
+---
+
+## Lab 3: Configuring SSH Access (Day 16)
+
+### Topology
+PC0(192.168.10.2)-- Switch(ASHISH-SW)--Router(Venus)
+### Router Configuration (Venus)
+| Setting | Value |
+|---------|-------|
+| Hostname | Venus |
+| Domain Name | cisco.com |
+| Username | ashish |
+| Password | cisco123 |
+| SSH Version | 2 |
+| Interface IP | 192.168.10.1/24 |
+
+### Router Commands Used
+en
+conf t
+hostname Venus
+interface gig0/0
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+exit
+ip domain-name cisco.com
+username ashish privilege 15 password
+cisco123
+crypto key generate rsa
+ip ssh version 2
+enable secret cisco
+line console 0
+logging synchronous
+login local
+exit
+line vty
+transport input ssh
+login local
+exit
+write memory
+### PC Configuration
+| Device | IP Address | Subnet Mask | Gateway |
+|--------|------------|-------------|---------|
+| PC0 | 192.168.10.2 | 255.255.255.0 | 192.168.10.1 |
+
+### Test Results
+| Test | Result |
+|------|--------|
+| SSH from PC0 to Switch | ✅ Successful |
+| Command Used | `ssh -l ashish 192.168.10.10` |
+| Password | `cisco123` |
+
+### Troubleshooting Notes
+- Username mismatch fixed: switched from `shish` to `ashish`
+- Both router and switch must use same username/password
+- SSH version must be set to 2 on both devices
+
+---
+
+## Commands Summary
+| Command | Purpose |
+|---------|---------|
+| `enable` | Enter Privileged EXEC mode |
+| `configure terminal` | Enter Global Config mode |
+| `hostname` | Set device name |
+| `enable secret` | Set privileged password |
+| `line console 0` | Configure console line |
+| `line vty 0 4` | Configure Telnet/SSH lines |
+| `interface vlan 1` | Configure management VLAN |
+| `ip default-gateway` | Set default gateway for switch |
+| `ip domain-name` | Set domain for SSH |
+| `username` | Create local user |
+| `crypto key generate rsa` | Generate SSH keys |
+| `ip ssh version 2` | Set SSH version |
+| `transport input ssh` | Allow only SSH |
+| `login local` | Use local username/password |
+| `write memory` | Save configuration |
+| `show running-config` | View current config |
+| `show ip interface brief` | View interface status |
+| `show ssh` | View SSH sessions |
 
 ### Router Configuration
