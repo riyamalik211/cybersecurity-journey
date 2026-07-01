@@ -163,10 +163,143 @@
 - Cisco Packet Tracer (simulated network)
 - WSL Ubuntu (Linux terminal)
 
+## Advanced Wireshark Practice
+
+### TCP SYN Analysis
+tcp.flags.syn == 1 && tcp.flags.ack == 0
+**What It Shows:** SYN packets — the start of new TCP connections.
+
+**Why It Matters (SOC Analyst Skill):**
+- Detects new connection attempts
+- Helps identify network scanning
+- Can reveal malware communication patterns
+- Unusual spikes in SYN packets may indicate an attack
+
+**My Practice:**
+- Captured traffic while browsing websites
+- Applied the SYN filter
+- Saw [X] SYN packets = [X] new connections opened
+- Destination ports: 53 (DNS), 443 (HTTPS), 80 (HTTP)
+
 ---
 
-## Next Steps
-- Practice more filters daily
-- Analyze traffic in different scenarios
-- Combine Wireshark with Packet Tracer
-- Learn more about TLS and encryption
+### Detection Filters
+
+| Filter | What It Detects |
+|--------|-----------------|
+| `tcp.port == 445` | SMB traffic (file sharing/malware) |
+| `dns && dns.qry.name contains "windows"` | Windows-related DNS queries |
+| `http.request.method == "POST"` | Data being sent to a website |
+| `tcp.analysis.retransmission` | Network issues or possible scanning |
+| `tls.handshake.type == 1` | Client Hello (start of encrypted connection) |
+
+---
+
+### My Observations from SYN Filter Practice
+
+| Observation | Count |
+|-------------|-------|
+| Total SYN packets | 14 |
+| To port 53 (DNS) | 5 |
+| To port 443 (HTTPS) | 6 |
+| To port 80 (HTTP) | 1 |
+
+**What This Means:**
+- My PC initiated 14 new connections during the capture
+- Most connections were for secure web traffic (HTTPS)
+- Some connections were for DNS lookups
+- All traffic went through my router (192.168.1.1)
+
+---
+
+### Why This is a SOC Analyst Skill
+
+| What I Did | What a SOC Analyst Does |
+|--------------|-------------------------|
+| Applied a filter for SYN packets | Detect scanning or connection attempts |
+| Counted new connections | Monitor for unusual traffic spikes |
+| Observed patterns | Identify malicious activity |
+
+---
+
+### Key Takeaways from Advanced Practice
+
+1. **SYN packets = new connection attempts**
+2. **Monitoring SYN packets helps detect scanning**
+3. **Port numbers reveal the type of traffic** (53=DNS, 443=HTTPS, 80=HTTP)
+4. **Encrypted traffic (HTTPS) is normal for web browsing**
+5. **Unusual destination ports may indicate suspicious activity**
+
+---
+
+## TCP Deep Dive Practice (Day 14)
+
+### TCP 3-Way Handshake
+1. **SYN** → Client requests connection
+2. **SYN-ACK** → Server acknowledges
+3. **ACK** → Client confirms
+
+### TCP Flags
+| Flag | Purpose |
+|------|---------|
+| SYN | Start a connection |
+| ACK | Acknowledge data |
+| FIN | End a connection |
+| RST | Reset a connection |
+
+### My Practice
+- Captured TCP handshake to google.com
+- Applied `tcp.flags.syn == 1` to see SYN packets
+- Applied `tcp.stream eq 0` to see full handshake
+- Followed TCP Stream to see the conversation
+
+---
+
+## Wireshark Tips
+
+### Display Filters vs Capture Filters
+| Type | Purpose | Example |
+|------|---------|---------|
+| **Display Filter** | Filter already captured packets | `dns` |
+| **Capture Filter** | Filter before capture starts | `host 192.168.1.1` |
+
+### Useful Display Filters
+| Filter | What It Shows |
+|--------|---------------|
+| `dns` | DNS traffic only |
+| `http` | HTTP traffic only |
+| `tcp` | TCP traffic only |
+| `tcp.port == 443` | HTTPS traffic |
+| `tcp.flags.syn == 1` | SYN packets |
+| `tcp.analysis.retransmission` | Retransmissions |
+| `tls.handshake.type == 1` | Client Hello |
+| `ip.addr == 192.168.1.1` | Traffic to/from an IP |
+
+
+## My Progress Summary
+
+### Protocols I Can Analyze
+- ✅ DNS
+- ✅ HTTP/HTTPS
+- ✅ TCP
+- ✅ TLS/SSL
+- ✅ ICMP
+- ✅ ARP
+- ✅ NTP
+- ✅ QUIC
+
+### Filters I Can Use
+- ✅ Basic: `dns`, `http`, `tcp`, `icmp`, `arp`
+- ✅ Port-based: `tcp.port == 443`, `tcp.port == 80`
+- ✅ IP-based: `ip.addr == X`, `ip.src == X`, `ip.dst == X`
+- ✅ Analysis: `tcp.analysis.retransmission`, `tcp.analysis.flags`
+- ✅ Advanced: `tcp.flags.syn == 1 && tcp.flags.ack == 0`
+- ✅ TLS: `tls.handshake.type == 1`
+- ✅ Custom columns for DNS, SNI
+
+### Tools I Can Use
+- ✅ Wireshark GUI
+- ✅ tshark (command-line)
+- ✅ Termshark (terminal-based)
+
+
