@@ -145,3 +145,43 @@
 ### How to Make Aliases Permanent
 ```bash
 nano ~/.bashrc
+
+## Cisco Commands (From Packet Tracer Labs)
+
+### Switch Commands
+| Command | Purpose |
+|---------|---------|
+| `enable` | Enter Privileged EXEC mode |
+| `configure terminal` | Enter Global Config mode |
+| `hostname` | Set device name |
+| `enable secret` | Set privileged password |
+| `line console 0` | Configure console line |
+| `line vty 0 4` | Configure Telnet/SSH lines |
+| `interface vlan 1` | Configure management VLAN |
+| `ip default-gateway` | Set default gateway for switch |
+| `ip domain-name` | Set domain for SSH |
+| `username` | Create local user |
+| `crypto key generate rsa` | Generate SSH keys |
+| `ip ssh version 2` | Set SSH version |
+| `transport input ssh` | Allow only SSH |
+| `login local` | Use local username/password |
+| `write memory` | Save configuration |
+| `show running-config` | View current config |
+| `show ip interface brief` | View interface status |
+| `show ssh` | View SSH sessions |
+
+### Router Commands
+| Command | Purpose |
+|---------|---------|
+| `interface gig0/0` | Enter interface configuration |
+| `ip address [ip] [mask]` | Assign IP to interface |
+| `no shutdown` | Enable interface |
+| `exit` | Exit current mode |
+| `end` | Exit to Privileged EXEC |
+
+### SSH Troubleshooting
+- Username must match on both devices
+- Password must match on both devices
+- SSH version must be set to 2 on both devices
+- RSA key modulus should be 2048
+
