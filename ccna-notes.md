@@ -15,11 +15,6 @@
 - **Collision Domain:** Where data packets can collide. Hubs have one collision domain; switches have a separate collision domain per port.
 - **Broadcast Domain:** Where a broadcast frame is sent to all devices. Routers break up broadcast domains; switches do not.
 
-### Packet Tracer Practice
-- **Built:** 2 PCs + 1 Switch
-- **IPs:** PC0 - 192.168.1.1, PC1 - 192.168.1.2
-- **Ping:** ✅ Successful
-
 ---
 
 ## Day 2: OSI Model & TCP/IP Model
@@ -57,17 +52,20 @@
   - Presentation (6)
   - Application (7)
 
-## Lab 1: Cisco CLI Modes
+---
 
-### Modes Practiced
-| Mode | Prompt | Command to Enter |
-|------|--------|------------------|
-| User EXEC | `Router>` | (default on login) |
+## CLI Modes
+
+### Cisco CLI Modes
+| Mode | Prompt | How to Enter |
+|------|--------|--------------|
+| User EXEC | `Router>` | Default on login |
 | Privileged EXEC | `Router#` | `enable` |
 | Global Config | `Router(config)#` | `configure terminal` |
 | Interface Config | `Router(config-if)#` | `interface fastEthernet 0/0` |
 | Line Config | `Router(config-line)#` | `line vty 0 4` |
 | Router Config | `Router(config-router)#` | `router rip` |
+| Sub-Interface Config | `Router(config-subif)#` | `interface fastEthernet 0/0.10` |
 
 ### Key Takeaways
 - `end` takes you from any mode back to Privileged EXEC
@@ -76,4 +74,98 @@
 
 ---
 
-c
+## Commands Reference
+
+### General Commands
+| Command | Purpose |
+|---------|---------|
+| `enable` | Enter Privileged EXEC mode |
+| `configure terminal` | Enter Global Config mode |
+| `hostname` | Set device name |
+| `enable secret` | Set privileged password |
+| `line console 0` | Configure console line |
+| `line vty 0 4` | Configure Telnet/SSH lines |
+| `interface vlan 1` | Configure management VLAN |
+| `ip default-gateway` | Set default gateway for switch |
+| `ip domain-name` | Set domain for SSH |
+| `username` | Create local user |
+| `crypto key generate rsa` | Generate SSH keys |
+| `ip ssh version 2` | Set SSH version |
+| `transport input ssh` | Allow only SSH |
+| `login local` | Use local username/password |
+| `write memory` | Save configuration |
+| `copy running-config startup-config` | Save configuration |
+| `show running-config` | View current config |
+| `show ip interface brief` | View interface status |
+| `show ssh` | View SSH sessions |
+| `show vlan brief` | View VLAN information |
+| `show etherchannel summary` | View EtherChannel status |
+
+---
+
+## Routing Concepts
+
+### Static Routing
+| Command | Purpose |
+|---------|---------|
+| `ip route [network] [mask] [next-hop]` | Add static route |
+| `ip route 0.0.0.0 0.0.0.0 [next-hop]` | Add default route |
+
+### RIP (Routing Information Protocol)
+| Command | Purpose |
+|---------|---------|
+| `router rip` | Enable RIP |
+| `version 2` | Set RIPv2 |
+| `network [network]` | Advertise network |
+| `no auto-summary` | Disable auto-summary |
+| `passive-interface [interface]` | Stop sending updates on an interface |
+
+### EIGRP (Enhanced Interior Gateway Routing Protocol)
+| Command | Purpose |
+|---------|---------|
+| `router eigrp [AS]` | Enable EIGRP |
+| `network [network]` | Advertise network |
+| `no auto-summary` | Disable auto-summary |
+
+### OSPF (Open Shortest Path First)
+| Command | Purpose |
+|---------|---------|
+| `router ospf [process-id]` | Enable OSPF |
+| `network [network] [wildcard] area [area]` | Advertise network |
+| `area [area] range [network] [mask]` | Summarize routes |
+
+---
+
+## VLAN Concepts
+
+### VLAN Commands
+| Command | Purpose |
+|---------|---------|
+| `vlan [id]` | Create VLAN |
+| `name [name]` | Name VLAN |
+| `switchport mode access` | Set port as access port |
+| `switchport access vlan [id]` | Assign port to VLAN |
+| `switchport mode trunk` | Set port as trunk |
+| `interface vlan [id]` | Configure management VLAN |
+
+### Inter-VLAN Routing (Router-on-a-Stick)
+| Command | Purpose |
+|---------|---------|
+| `interface gig0/0.[vlan]` | Create sub-interface |
+| `encapsulation dot1q [vlan]` | Set VLAN encapsulation |
+| `ip address [ip] [mask]` | Assign IP to sub-interface |
+
+---
+
+## My Personal Notes
+
+### Commands I Want to Remember
+- `crypto key generate rsa` — Must have domain name set first
+- `transport input ssh` — Only allow SSH (not Telnet)
+- `no shutdown` — Enable an interface
+- `write memory` — Save configuration
+
+### Troubleshooting Tips
+- If SSH fails, check username and password match on both devices
+- If ping fails, check IP addresses and gateways
+- If VLAN not working, check trunk and access port configurations
