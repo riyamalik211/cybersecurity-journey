@@ -49,6 +49,47 @@ end
 - Packets Sent: 4, Received: 3, Lost: 1 (ARP)
 - Minimum: 0ms, Maximum: 1ms, Average: 0ms
 
+### PC Configuration
+| Device | IP Address | Subnet Mask | Gateway |
+|--------|------------|-------------|---------|
+| PC0 | 192.168.10.2 | 255.255.255.0 | 192.168.10.1 |
+
+### Test Results
+| Test | Result |
+|------|--------|
+| SSH from PC0 to Switch | ✅ Successful |
+| Command Used | `ssh -l ashish 192.168.10.10` |
+| Password | `cisco123` |
+
+### Troubleshooting Notes
+- Username mismatch fixed: switched from `shish` to `ashish`
+- Both router and switch must use same username/password
+- SSH version must be set to 2 on both devices
+
+---
+
+## Commands Summary
+| Command | Purpose |
+|---------|---------|
+| `enable` | Enter Privileged EXEC mode |
+| `configure terminal` | Enter Global Config mode |
+| `hostname` | Set device name |
+| `enable secret` | Set privileged password |
+| `line console 0` | Configure console line |
+| `line vty 0 4` | Configure Telnet/SSH lines |
+| `interface vlan 1` | Configure management VLAN |
+| `ip default-gateway` | Set default gateway for switch |
+| `ip domain-name` | Set domain for SSH |
+| `username` | Create local user |
+| `crypto key generate rsa` | Generate SSH keys |
+| `ip ssh version 2` | Set SSH version |
+| `transport input ssh` | Allow only SSH |
+| `login local` | Use local username/password |
+| `write memory` | Save configuration |
+| `show running-config` | View current config |
+| `show ip interface brief` | View interface status |
+| `show ssh` | View SSH sessions |
+
 ### What I Learned
 - Routers connect different networks
 - Default gateway tells PC where to send traffic for other networks
