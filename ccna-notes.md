@@ -205,12 +205,6 @@ write memory
 | Command Used | `ssh -l ashish 192.168.10.10` |
 | Password | `cisco123` |
 
-### Troubleshooting Notes
-- Username mismatch fixed: switched from `shish` to `ashish`
-- Both router and switch must use same username/password
-- SSH version must be set to 2 on both devices
-
----
 
 ## Commands Summary
 | Command | Purpose |
