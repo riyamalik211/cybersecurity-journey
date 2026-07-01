@@ -54,14 +54,36 @@ My complete solutions and walkthroughs for the **OverTheWire Bandit** wargame �
 Building a strong foundation in **Linux, Networking, and Security** to become a **Network Security Engineer / SOC Analyst**.
 
 ---
+## 🛠️ Skills I'm Building
 
-## 📅 My Journey
+### Networking & Security
+- ✅ CCNA Labs (CLI Modes, Basic Config, SSH)
+- ✅ VLANs and Inter-VLAN Routing
+- ✅ Router-on-a-Stick
+- ✅ SSH Configuration
 
-| Day | Focus |
-|-----|-------|
-| 1-4 | Bandit Levels 0–16, Linux basics |
-| 5-8 | Wireshark, Packet Tracer, Network analysis |
-| Ongoing | Documenting and practicing daily |
+### Network Analysis
+- ✅ Wireshark packet analysis
+- ✅ tshark and Termshark
+- ✅ TCP SYN analysis
+- ✅ Detection filters for suspicious traffic
+
+### Linux
+- ✅ Bandit levels (0-16)
+- ✅ Linux commands (40+)
+- ✅ WSL Ubuntu
+
+## 📊 Recent Progress
+
+| Topic | Status |
+|-------|--------|
+| CCNA Lab 1: CLI Modes | ✅ |
+| CCNA Lab 2: Basic Config | ✅ |
+| CCNA Lab 3: SSH Access | ✅ |
+| Wireshark Videos #0-20 | ✅ |
+| Wireshark SYN Analysis | ✅ |
+| Packet Tracer Projects 1-4 | ✅ |
+
 
 ---
 
