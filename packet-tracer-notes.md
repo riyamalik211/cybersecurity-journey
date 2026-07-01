@@ -22,7 +22,7 @@
 - How devices communicate through a switch
 - A switch uses MAC addresses to forward traffic
 
-## Project 2: Two Networks with a Router (Day 10)
+## Project 2: Two Networks with a Router
 
 ### Topology
 - PC0 (192.168.1.1) → Switch0 → Router0 → PC1 (192.168.2.1)
