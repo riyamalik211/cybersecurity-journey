@@ -275,6 +275,81 @@ tcp.flags.syn == 1 && tcp.flags.ack == 0
 | `tls.handshake.type == 1` | Client Hello |
 | `ip.addr == 192.168.1.1` | Traffic to/from an IP |
 
+## QUIC Protocol Analysis
+
+### What is QUIC?
+- Quick UDP Internet Connections
+- Modern protocol used by Google, YouTube, and many web services
+- Uses UDP instead of TCP
+- Faster than TCP/TLS (0-RTT handshake)
+
+### How to Filter QUIC
+| Filter | What It Shows |
+|--------|---------------|
+| `quic` | All QUIC traffic |
+| `udp.port == 443` | QUIC uses UDP port 443 |
+| `quic` | QUIC Initial packets (handshake start) |
+
+### Key QUIC Packet Types
+| Packet Type | Purpose |
+|-------------|---------|
+| Initial | Starts the QUIC connection |
+| Handshake | Completes the connection setup |
+| Protected Payload | Encrypted data |
+
+### QUIC vs TLS Comparison
+| Feature | QUIC | TLS |
+|---------|------|-----|
+| Transport | UDP | TCP |
+| Handshake | 0-RTT (faster) | 1-RTT (slower) |
+| Encryption | Built-in | Built-in |
+| Default for | Google, YouTube | Many other sites |
+
+### My Observations
+- QUIC uses UDP port 443
+- QUIC packets are encrypted (Protected Payload)
+- Destination Connection ID uniquely identifies each connection
+
+## Nmap Integration with Wireshark
+
+### Why Nmap + Wireshark
+- Nmap generates traffic
+- Wireshark analyzes the traffic
+- Full visibility into scanning activity
+
+### Basic Nmap Scans to Analyze
+| Nmap Command | What It Does | Wireshark Filter to Use |
+|--------------|--------------|-------------------------|
+| `nmap -sn 192.168.1.0/24` | Ping scan (host discovery) | `icmp` |
+| `nmap -sS 192.168.1.1` | SYN scan (stealth) | `tcp.flags.syn == 1` |
+| `nmap -sV 192.168.1.1` | Version scan | `tcp.port == 443` |
+
+### What to Look For in Wireshark During Nmap Scans
+- `tcp.flags.syn == 1` — SYN packets
+- `tcp.flags.syn == 1 && tcp.flags.ack == 0` — SYN scan (stealth)
+- `icmp` — Ping requests and replies
+
+## NAT Traffic Analysis
+
+### NAT-Related Filters
+| Filter | What It Shows |
+|--------|---------------|
+| `ip.src == 192.168.1.0/24` | Traffic from private network |
+| `!ip.src == 192.168.1.0/24` | Traffic from public IPs (NAT) |
+| `tcp.port == 80` | HTTP traffic |
+| `tcp.port == 443` | HTTPS traffic |
+
+### How NAT Appears in Wireshark
+- Private IPs are translated to public IPs
+- PAT uses port numbers to track connections
+- NAT translations can be seen in the packet details
+
+### Why This Matters for SOC Analysts
+- NAT is used in almost all networks
+- Monitoring NAT traffic helps detect:
+  - Unauthorized traffic
+  - Data exfiltration
+  - Suspicious connections
 
 ## My Progress Summary
 
