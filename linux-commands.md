@@ -1,6 +1,6 @@
 # Linux Commands I Learned
 
-## Day 1: Navigation & Files
+## Navigation & Files
 
 | Command | What It Does | Example |
 |---------|--------------|---------|
@@ -20,7 +20,7 @@
 
 ---
 
-## Day 2: Reading & Searching
+## Reading & Searching
 
 | Command | What It Does | Example |
 |---------|--------------|---------|
@@ -38,7 +38,7 @@
 
 ---
 
-## Day 3: Compression & Encoding
+## Compression & Encoding
 
 | Command | What It Does | Example |
 |---------|--------------|---------|
@@ -54,7 +54,7 @@
 
 ---
 
-## Day 4: SSH, Networking & SSL
+## SSH, Networking & SSL
 
 | Command | What It Does | Example |
 |---------|--------------|---------|
@@ -62,7 +62,6 @@
 | `ssh -i keyfile user@host -p port` | Connect using SSH private key | `ssh -i sshkey.private bandit14@localhost -p 2220` |
 | `su user` | Switch to another user | `su bandit14` |
 | `nc host port` | Connect to a service on a port | `nc localhost 30000` |
-| `nmap -p range host` | Scan for open ports | `nmap -p 31000-32000 localhost` |
 | `openssl s_client -connect host:port` | Connect using SSL/TLS | `openssl s_client -connect localhost:30001` |
 | `echo "text" \| command` | Send text as input to a command | `echo "password" \| openssl s_client -connect localhost:31790 -quiet` |
 | `nano filename` | Create/edit a file | `nano key.txt` |
@@ -70,7 +69,7 @@
 
 ---
 
-## Day 5-6: Package Management & System Commands
+## Package Management & System Commands
 
 | Command | What It Does | Example |
 |---------|--------------|---------|
@@ -93,7 +92,7 @@
 
 ---
 
-## Day 7: Process Management (NetworkChuck EP7)
+## Process Management
 
 | Command | What It Does | Example |
 |---------|--------------|---------|
@@ -116,7 +115,7 @@
 
 ---
 
-## Day 8: Linux Terminal Shortcuts (NetworkChuck EP9)
+## Linux Terminal Shortcuts
 
 ### Shortcuts
 | Shortcut | What It Does |
@@ -145,43 +144,130 @@
 ### How to Make Aliases Permanent
 ```bash
 nano ~/.bashrc
+```
 
-## Cisco Commands (From Packet Tracer Labs)
+Add your aliases at the bottom, then:
 
-### Switch Commands
-| Command | Purpose |
-|---------|---------|
-| `enable` | Enter Privileged EXEC mode |
-| `configure terminal` | Enter Global Config mode |
-| `hostname` | Set device name |
-| `enable secret` | Set privileged password |
-| `line console 0` | Configure console line |
-| `line vty 0 4` | Configure Telnet/SSH lines |
-| `interface vlan 1` | Configure management VLAN |
-| `ip default-gateway` | Set default gateway for switch |
-| `ip domain-name` | Set domain for SSH |
-| `username` | Create local user |
-| `crypto key generate rsa` | Generate SSH keys |
-| `ip ssh version 2` | Set SSH version |
-| `transport input ssh` | Allow only SSH |
-| `login local` | Use local username/password |
-| `write memory` | Save configuration |
-| `show running-config` | View current config |
-| `show ip interface brief` | View interface status |
-| `show ssh` | View SSH sessions |
+```bash
+source ~/.bashrc
+```
 
-### Router Commands
-| Command | Purpose |
-|---------|---------|
-| `interface gig0/0` | Enter interface configuration |
-| `ip address [ip] [mask]` | Assign IP to interface |
-| `no shutdown` | Enable interface |
-| `exit` | Exit current mode |
-| `end` | Exit to Privileged EXEC |
+---
 
-### SSH Troubleshooting
-- Username must match on both devices
-- Password must match on both devices
-- SSH version must be set to 2 on both devices
-- RSA key modulus should be 2048
+Cisco Commands (From Packet Tracer Labs)
+
+Switch Commands
+
+Command Purpose
+enable Enter Privileged EXEC mode
+configure terminal Enter Global Config mode
+hostname Set device name
+enable secret Set privileged password
+line console 0 Configure console line
+line vty 0 4 Configure Telnet/SSH lines
+interface vlan 1 Configure management VLAN
+ip default-gateway Set default gateway for switch
+ip domain-name Set domain for SSH
+username Create local user
+crypto key generate rsa Generate SSH keys
+ip ssh version 2 Set SSH version
+transport input ssh Allow only SSH
+login local Use local username/password
+write memory Save configuration
+show running-config View current config
+show ip interface brief View interface status
+show ssh View SSH sessions
+
+Router Commands
+
+Command Purpose
+interface gig0/0 Enter interface configuration
+ip address [ip] [mask] Assign IP to interface
+no shutdown Enable interface
+exit Exit current mode
+end Exit to Privileged EXEC
+
+SSH Troubleshooting
+
+· Username must match on both devices
+· Password must match on both devices
+· SSH version must be set to 2 on both devices
+· RSA key modulus should be 2048
+
+---
+
+Nmap Commands 
+
+Installation
+
+Command Purpose
+sudo apt install nmap -y Install Nmap
+
+Basic Scans
+
+Command Purpose
+nmap -sn 192.168.1.0/24 Ping scan (host discovery)
+nmap -sS 192.168.1.1 SYN scan (stealth)
+nmap -sV 192.168.1.1 Version scan
+nmap -O 192.168.1.1 OS detection
+nmap -p 80,443 192.168.1.1 Scan specific ports
+nmap -p- 192.168.1.1 Scan all ports (1-65535)
+
+Nmap + Wireshark Integration
+
+· Run Nmap scan → Capture in Wireshark → Analyze traffic
+· SYN scan shows tcp.flags.syn == 1 packets in Wireshark
+· Version scan shows service banners
+
+My Practice
+
+· Installed Nmap on WSL Ubuntu
+· Ran ping scan to discover devices on my network
+· Ran SYN scan to see open ports
+· Combined Nmap with Wireshark for traffic analysis
+
+---
+
+My Personal Notes
+
+Commands I Want to Remember
+
+· cat ./-file07 - Read a file that starts with -
+· grep millionth data.txt - Search for "millionth" in a large file
+· find / -user bandit7 -size 33c - Find a file by size and owner
+· 2>/dev/null - Hide error messages when searching
+· echo "text" \| openssl s_client ... - Send text via SSL
+· crypto key generate rsa — Must have domain name set first
+· transport input ssh — Only allow SSH (not Telnet)
+· no shutdown — Enable an interface
+· write memory — Save configuration
+· ip routing — Enable routing on L3 switch
+
+File Type Flowchart
+
+1. Always start with: file filename
+2. Based on output:
+   · ASCII text → cat filename
+   · gzip compressed → gunzip filename
+   · bzip2 compressed → bunzip2 filename
+   · tar archive → tar -xf filename
+   · data → strings filename
+
+SSH Key Tips
+
+· Always use chmod 600 for SSH keys
+· Save keys in /tmp if permission denied in home directory
+· Use ssh -i keyfile user@host -p port to connect
+
+Ports I Used
+
+· Port 2220 - SSH for Bandit
+· Port 30000 - Netcat service (Level 14)
+· Port 30001 - SSL service (Level 15)
+· Port 31790 - SSL service for SSH key (Level 16)
+· Port 443 - HTTPS/QUIC
+· Port 80 - HTTP
+· Port 53 - DNS
+
+
 
