@@ -1,6 +1,6 @@
-# 🛡️ Bandit Solutions
+# 🛡️ Cybersecurity Journey
 
-My complete solutions and walkthroughs for the **OverTheWire Bandit** wargame — a hands-on journey to master Linux command line and cybersecurity fundamentals.
+Welcome to my cybersecurity learning journey. I am documenting everything I learn — from Linux basics to network security, CCNA, Wireshark, Nmap, and more.
 
 ---
 
@@ -34,6 +34,7 @@ My complete solutions and walkthroughs for the **OverTheWire Bandit** wargame �
 | `wireshark-notes.md` | My Wireshark practice and filters |
 | `packet-tracer-notes.md` | My Packet Tracer practice and network projects |
 | `bandit-progress.md` | Track my progress through all levels |
+| `ccna-notes.md` | CCNA theory and commands reference |
 
 ---
 
@@ -45,6 +46,7 @@ My complete solutions and walkthroughs for the **OverTheWire Bandit** wargame �
 | OverTheWire Bandit | Linux command line practice |
 | Wireshark | Network traffic analysis |
 | Cisco Packet Tracer | Network simulation and security |
+| Nmap | Network scanning and discovery |
 | GitHub | Documentation and portfolio |
 
 ---
@@ -54,24 +56,38 @@ My complete solutions and walkthroughs for the **OverTheWire Bandit** wargame �
 Building a strong foundation in **Linux, Networking, and Security** to become a **Network Security Engineer / SOC Analyst**.
 
 ---
+
 ## 🛠️ Skills I'm Building
 
 ### Networking & Security
-- ✅ CCNA Labs (CLI Modes, Basic Config, SSH)
+- ✅ CCNA Labs 1-12 (CLI Modes, Basic Config, SSH, VLANs, VTP, EtherChannel, Inter-VLAN Routing, Port Security, NAT)
 - ✅ VLANs and Inter-VLAN Routing
 - ✅ Router-on-a-Stick
 - ✅ SSH Configuration
+- ✅ Port Security
+- ✅ Dynamic NAT
+- ✅ Static PAT (Port Forwarding)
 
 ### Network Analysis
 - ✅ Wireshark packet analysis
 - ✅ tshark and Termshark
 - ✅ TCP SYN analysis
 - ✅ Detection filters for suspicious traffic
+- ✅ TLS/SSL Analysis
+- ✅ QUIC Protocol Analysis
+- ✅ NAT Traffic Analysis
+- ✅ Custom Columns (SNI, Ports)
 
 ### Linux
 - ✅ Bandit levels (0-16)
 - ✅ Linux commands (40+)
 - ✅ WSL Ubuntu
+
+### Nmap (Started)
+- 🔜 Basic scans (Ping scan, SYN scan, Version scan)
+- 🔜 Nmap + Wireshark integration
+
+---
 
 ## 📊 Recent Progress
 
@@ -80,17 +96,40 @@ Building a strong foundation in **Linux, Networking, and Security** to become a 
 | CCNA Lab 1: CLI Modes | ✅ |
 | CCNA Lab 2: Basic Config | ✅ |
 | CCNA Lab 3: SSH Access | ✅ |
+| CCNA Lab 4: Backup & Restore | ✅ |
+| CCNA Lab 5: VLAN, Access & Trunk Port | ✅ |
+| CCNA Lab 6: VTP Configuration | ✅ |
+| CCNA Lab 7: EtherChannel | ✅ |
+| CCNA Lab 8: VLAN, VTP, EtherChannel, Inter-VLAN Routing | ✅ |
+| CCNA Lab 9: Inter-VLAN Routing on L3 Switch | ✅ |
+| CCNA Lab 10: Port Security | ✅ |
+| CCNA Lab 11: Dynamic NAT | ✅ |
+| CCNA Lab 12: Static PAT | ✅ |
 | Wireshark Videos #0-20 | ✅ |
 | Wireshark SYN Analysis | ✅ |
+| Wireshark TLS/SSL Analysis | ✅ |
+| Wireshark QUIC Analysis | ✅ |
+| Wireshark NAT Analysis | ✅ |
 | Packet Tracer Projects 1-4 | ✅ |
+| Tata Cybersecurity Certificate | ✅ |
+| CyArt Internship | 🔜 In Progress |
 
+---
+
+## 📚 Certifications
+
+| Certification | Status |
+|---------------|--------|
+| Tata Cybersecurity Analyst (Forage) | ✅ |
+| OverTheWire Bandit CTF (16 levels) | ✅ |
+| TryHackMe Cyber Security 101 (In Progress) | ✅ |
 
 ---
 
 ## 🔗 Connect With Me
 
 - [GitHub](https://github.com/riyamalik211)
-- [LinkedIn](https://linkedin.com/in/riyamalik211)
+- [LinkedIn](https://linkedin.com/in/riya-malik-145a4327b)
 
 ---
 
